@@ -12,5 +12,5 @@ public interface BookDAO {
 	
 	Book getBookById(Long id);
 
-    Book create(Book book);
+    Book create(String title, String firstname, String lastname);
 }

@@ -18,30 +18,30 @@ public class AuthorDAOImpl extends JpaDaoSupport implements AuthorDAO {
 
 
     public List<Author> getAllAuthors() {
-      return entityManager.createQuery("from " + Author.class)
-       .getResultList();
-   }
+        return entityManager.createQuery("from " + Author.class)
+                .getResultList();
+    }
 
-	public Author getAuthorByName(String firstname, String lastname) {
+    public Author getAuthorByName(String firstname, String lastname) {
         List<Author> authors = entityManager.createQuery("from Author where firstname=:first and lastname=:last ")
                 .setParameter("first", firstname)
                 .setParameter("last", lastname)
                 .setMaxResults(1)
                 .getResultList();
 
-        if(authors.size() > 0){
+        if (authors.size() > 0) {
             System.out.println("Found author in db");
             return authors.get(0);
-        }else{
+        } else {
             return null;
         }
 
-	}
+    }
 
     public Author create(Author author) {
         System.out.println("Creating the autor");
 
-        entityManager.persist( author );
+        entityManager.persist(author);
         return author;
     }
 }
