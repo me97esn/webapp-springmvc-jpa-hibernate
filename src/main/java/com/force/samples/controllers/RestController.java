@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import com.force.samples.dao.AuthorDAO;
 import com.force.samples.entity.Author;
+import com.force.samples.services.BookService;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
@@ -25,12 +26,15 @@ public class RestController {
 	
 	private static Logger log = LoggerFactory.getLogger(RestController.class);
 
+    @Inject
+    BookService bookService;
+
 	@Inject
 	private BookDAO bookDAO;
 
     @Inject
 	private AuthorDAO authorDAO;
-	
+
 	@RequestMapping(method=RequestMethod.GET, value="/book/{bookId}")
 	public @ResponseBody Book getBook (@PathVariable(value="bookId") long bookId, Model model) {
 		
@@ -42,13 +46,13 @@ public class RestController {
 
     @RequestMapping(method=RequestMethod.PUT, value="/book", headers="Accept=application/json")
 	public @ResponseBody Book createBook (@RequestBody String body, Model model) throws IOException {
+
         System.out.println("createOrReplaceBook:" + body);
 
         ObjectMapper mapper = new ObjectMapper();
         JsonNode jsonBook = mapper.readTree( body );
 
-        bookDAO.create(
-                jsonBook.get("title").toString(),
+        bookService.createBook(jsonBook.get("title").toString(),
                 jsonBook.get("author").get("firstname").toString(),
                 jsonBook.get("author").get("lastname").toString());
 

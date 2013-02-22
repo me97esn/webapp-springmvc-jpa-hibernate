@@ -32,42 +32,8 @@ public class BookDAOImpl extends JpaDaoSupport implements BookDAO {
         return entityManager.find(Book.class, id);
     }
 
-    public Author getAuthorByName(String firstname, String lastname) {
-        List<Author> authors = entityManager.createQuery("from Author where firstname=:first and lastname=:last ")
-                .setParameter("first", firstname)
-                .setParameter("last", lastname)
-                .setMaxResults(1)
-                .getResultList();
-
-        if (authors.size() > 0) {
-            System.out.println("Found author in db");
-            return authors.get(0);
-        } else {
-            return null;
-        }
-
+    public Book create(Book b) {
+        entityManager.persist(b);
+        return b;
     }
-
-
-    public Book create(String title, String firstname, String lastname) {
-
-        Author author = getAuthorByName(firstname, lastname);
-        if(author == null){
-            author = new Author();
-            author.setFirstName(firstname);
-            author.setLastName(lastname);
-
-            entityManager.persist(author);
-        }
-
-        Book book = new Book();
-        book.setAuthor(author);
-        book.setTitle(title);
-
-        System.out.println("Creating the book");
-        entityManager.persist(book);
-
-        return book;
-    }
-
 }
