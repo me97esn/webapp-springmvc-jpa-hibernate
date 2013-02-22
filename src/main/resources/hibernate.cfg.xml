@@ -4,12 +4,14 @@
 		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
-		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-		<property name="hibernate.connection.url">jdbc:postgresql://localhost/devdb</property>
-		<property name="hibernate.connection.username">devdbuser</property>
-		<property name="hibernate.connection.password">postgres</property>
-		<property name="hibernate.show_sql">true</property>
+
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost/portingtograils</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.connection.username">portingUser</property>
+		<property name="hibernate.connection.password">grailsPwd</property>
+        <property name="hbm2ddl.auto">update</property>
+
 	</session-factory>
 </hibernate-configuration>
 
