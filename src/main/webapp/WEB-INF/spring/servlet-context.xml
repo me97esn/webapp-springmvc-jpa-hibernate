@@ -64,4 +64,5 @@
 	
 	<!-- DAO configs -->
 	<bean id="bookDAO" class="com.force.samples.dao.BookDAOImpl"/>
+	<bean id="authorDAO" class="com.force.samples.dao.AuthorDAOImpl"/>
 </beans>

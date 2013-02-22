@@ -11,4 +11,6 @@ public interface BookDAO {
 	List<Book> getBooksByTitle(String title);
 	
 	Book getBookById(Long id);
+
+    Book create(Book book);
 }

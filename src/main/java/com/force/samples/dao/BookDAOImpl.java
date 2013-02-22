@@ -6,6 +6,9 @@ import org.springframework.orm.jpa.support.JpaDaoSupport;
 
 import com.force.samples.entity.Book;
 
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+
 public class BookDAOImpl extends JpaDaoSupport implements BookDAO {
 
 	public List<Book> getAllBooks() {
@@ -19,5 +22,11 @@ public class BookDAOImpl extends JpaDaoSupport implements BookDAO {
 	public Book getBookById(Long id) {
 		return getJpaTemplate().find(Book.class, id);
 	}
+
+    public Book create(Book book) {
+        System.out.println("Creating the book");
+
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
 
 }
