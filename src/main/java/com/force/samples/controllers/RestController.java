@@ -49,9 +49,16 @@ public class RestController {
         book.setTitle( jsonBook.get("title").toString() );
 
         // Get or create the author
-        Author author = authorDAO.getAuthorByName(jsonBook.get("author").toString());
+        String lastname = jsonBook.get("author").get("firstname").toString();
+        String firstname = jsonBook.get("author").get("lastname").toString();
+
+        Author author = authorDAO.getAuthorByName(firstname, lastname);
         if(author == null){
-            author = authorDAO.create(jsonBook.get("author").toString());
+            author = new Author();
+            author.setFirstName(firstname);
+            author.setLastName(lastname);
+
+            authorDAO.create(author);
         }
 
         book.setAuthor(author);
