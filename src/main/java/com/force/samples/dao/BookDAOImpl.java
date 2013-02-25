@@ -12,7 +12,6 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-@Transactional
 public class BookDAOImpl extends JpaDaoSupport implements BookDAO {
     @PersistenceContext
     EntityManager entityManager;

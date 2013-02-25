@@ -10,7 +10,6 @@ import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
 
-@Transactional
 public class AuthorDAOImpl extends JpaDaoSupport implements AuthorDAO {
 
     @PersistenceContext
